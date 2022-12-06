@@ -64,11 +64,11 @@ def test(data,
 
         # load model
         try:
-            ckpt = torch.load(weights[0], map_location=device)  # load checkpoint
+            ckpt = torch.load(weights, map_location=device)  # load checkpoint
             ckpt['model'] = {k: v for k, v in ckpt['model'].items() if model.state_dict()[k].numel() == v.numel()}
             model.load_state_dict(ckpt['model'], strict=False)
         except:
-            load_darknet_weights(model, weights[0])
+            load_darknet_weights(model, weights)
         imgsz = check_img_size(imgsz, s=64)  # check img_size
 
     # Half
